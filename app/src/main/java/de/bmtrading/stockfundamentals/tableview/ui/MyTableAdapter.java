@@ -14,6 +14,8 @@ import java.util.List;
 import de.bmtrading.stockfundamentals.R;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.CellViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.ColumnHeaderViewHolder;
+import de.bmtrading.stockfundamentals.tableview.ui.holder.MoneyCellViewHolder;
+import de.bmtrading.stockfundamentals.tableview.ui.holder.PercentChangeCellViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.RowHeaderViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
 import de.bmtrading.stockfundamentals.tableview.ui.model.ColumnHeaderModel;
@@ -36,15 +38,6 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
         View layout;
 
         switch (viewType) {
-            /*
-            case MyTableViewModel.GENDER_TYPE:
-                // Get gender cell xml Layout
-                layout = LayoutInflater.from(mContext).inflate(R.layout
-                        .tableview_gender_cell_layout, parent, false);
-
-                return new GenderCellViewHolder(layout);
-
-
             case MyTableViewModel.MONEY_TYPE:
                 // Get money cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout
@@ -52,7 +45,13 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
 
                 // Create the relevant view holder
                 return new MoneyCellViewHolder(layout);
-                */
+            case MyTableViewModel.PERCENT_CHANGE_TYPE:
+                // Get default cell xml Layout
+                layout = LayoutInflater.from(mContext).inflate(R.layout
+                        .tableview_cell_layout, parent, false);
+
+                // Create the relevant view holder
+                return new PercentChangeCellViewHolder(layout);
             default:
                 // Get default Cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout.tableview_cell_layout,
@@ -71,12 +70,11 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
         if (holder instanceof CellViewHolder) {
             // Get the holder to update cell item text
             ((CellViewHolder) holder).setCellModel(cell, p_nXPosition);
-
-        } /*else if (holder instanceof GenderCellViewHolder) {
-            ((GenderCellViewHolder) holder).setCellModel(cell);
+        } else if (holder instanceof PercentChangeCellViewHolder) {
+            ((PercentChangeCellViewHolder) holder).setCellModel(cell);
         } else if (holder instanceof MoneyCellViewHolder) {
             ((MoneyCellViewHolder) holder).setCellModel(cell);
-        }*/
+        }
 
     }
 

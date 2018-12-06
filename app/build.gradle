@@ -33,8 +33,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    // Klaxon Json Parser
     implementation 'com.beust:klaxon:3.0.1'
+
+    // Jsoup Html Parser
     implementation 'org.jsoup:jsoup:1.11.3'
 
-    implementation "com.evrencoskun.library:tableview:0.8.8"
-}
+    // TableView
+    implementation "com.evrencoskun.library:tableview:$tableview_version"
+
+    // MoneyView
+    implementation "org.fabiomsr:moneytextview:$moneyview_version"}

@@ -1,7 +1,5 @@
 package de.bmtrading.stockfundamentals.tableview.ui;
 
-import android.view.Gravity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +9,8 @@ import de.bmtrading.stockfundamentals.tableview.ui.model.RowHeaderModel;
 import iex.Stock;
 
 public class MyTableViewModel {
-    public static final int GENDER_TYPE = 1;
-    public static final int MONEY_TYPE = 2;
+    public static final int MONEY_TYPE = 1;
+    public static final int PERCENT_CHANGE_TYPE = 2;
 
     private List<ColumnHeaderModel> mColumnHeaderModelList;
     private List<RowHeaderModel> mRowHeaderModelList;
@@ -20,12 +18,27 @@ public class MyTableViewModel {
 
     public int getCellItemViewType(int column) {
         switch (column) {
-            case 5:
-                // 5. column header is gender.
-                return GENDER_TYPE;
-            case 8:
-                // 8. column header is Salary.
+            case 1:
+            case 13:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
                 return MONEY_TYPE;
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 38:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+                return PERCENT_CHANGE_TYPE;
             default:
                 return 0;
         }

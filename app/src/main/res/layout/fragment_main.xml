@@ -3,7 +3,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="de.bmtrading.stockfundamentals.tableview.MainFragment">
+             tools:context="de.bmtrading.stockfundamentals.tableview.ui.MainFragment">
 
     <com.evrencoskun.tableview.TableView
         android:id="@+id/tableView"

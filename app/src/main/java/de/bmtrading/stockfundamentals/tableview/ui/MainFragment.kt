@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview
+package de.bmtrading.stockfundamentals.tableview.ui
 
 import android.os.Bundle
 import android.os.Handler
@@ -12,8 +12,6 @@ import android.widget.TextView
 import com.evrencoskun.tableview.TableView
 import de.bmtrading.stockfundamentals.R
 
-import de.bmtrading.stockfundamentals.tableview.ui.MyTableAdapter
-import de.bmtrading.stockfundamentals.tableview.ui.MyTableViewListener
 import iex.IexApiController
 import iex.Stock
 import iex.Types
@@ -32,7 +30,7 @@ class MainFragment : Fragment() {
 
         if(mStockList == null) {
             Thread(Runnable {
-                val symbols = mIexApiController.getSP500Symbols()
+                val symbols = listOf("AAPL","AMZN")//mIexApiController.getSP500Symbols()
                 val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
                 mStockList = mIexApiController.getStocksList(symbols, types)
             }).start()
