@@ -64,6 +64,7 @@ class IexApiController {
 
                 val jsonObj: JsonObject = parser.parse(dataStringBuilder) as JsonObject
 
+                Log.d("StockFundamentals",data.toString())
                 jsonObj.map { map ->
                     counter++
                     mProgress = counter/symbolsList.size.toDouble()
@@ -186,4 +187,3 @@ class IexApiController {
         return list
     }
 }
-

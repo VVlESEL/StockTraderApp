@@ -137,6 +137,45 @@ public class ColumnHeaderViewHolder extends AbstractSorterViewHolder {
             Gravity.CENTER,
             // UpdatedAt
             Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
+            Gravity.CENTER,
             // Address
             Gravity.LEFT,
             // Zip Code
@@ -145,6 +184,4 @@ public class ColumnHeaderViewHolder extends AbstractSorterViewHolder {
             Gravity.RIGHT,
             // Fax
             Gravity.RIGHT};
-
-
 }

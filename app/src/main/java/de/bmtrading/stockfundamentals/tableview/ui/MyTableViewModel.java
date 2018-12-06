@@ -30,26 +30,7 @@ public class MyTableViewModel {
                 return 0;
         }
     }
-
-     /*
-       - Each of Column Header -
-            "Id"
-            "Name"
-            "Nickname"
-            "Email"
-            "Birthday"
-            "Gender"
-            "Age"
-            "Job"
-            "Salary"
-            "CreatedAt"
-            "UpdatedAt"
-            "Address"
-            "Zip Code"
-            "Phone"
-            "Fax"
-     */
-
+/*
     public int getColumnTextAlign(int column) {
         switch (column) {
             // Id
@@ -102,28 +83,55 @@ public class MyTableViewModel {
         }
 
     }
-
+*/
     private List<ColumnHeaderModel> createColumnHeaderModelList() {
         List<ColumnHeaderModel> list = new ArrayList<>();
 
         // Create Column Headers
-        list.add(new ColumnHeaderModel("Symbol"));
         list.add(new ColumnHeaderModel("Company"));
-        list.add(new ColumnHeaderModel("CEO"));
-        /*
-        list.add(new ColumnHeaderModel("Email"));
-        list.add(new ColumnHeaderModel("Birthday"));
-        list.add(new ColumnHeaderModel("Sex"));
-        list.add(new ColumnHeaderModel("Age"));
-        list.add(new ColumnHeaderModel("Job"));
-        list.add(new ColumnHeaderModel("Salary"));
-        list.add(new ColumnHeaderModel("CreatedAt"));
-        list.add(new ColumnHeaderModel("UpdatedAt"));
-        list.add(new ColumnHeaderModel("Address"));
-        list.add(new ColumnHeaderModel("Zip Code"));
-        list.add(new ColumnHeaderModel("Phone"));
-        list.add(new ColumnHeaderModel("Fax"));
-        */
+        list.add(new ColumnHeaderModel("Market Cap"));
+        list.add(new ColumnHeaderModel("Beta"));
+        list.add(new ColumnHeaderModel("52W High"));
+        list.add(new ColumnHeaderModel("52W Low"));
+        list.add(new ColumnHeaderModel("52W Change"));
+        list.add(new ColumnHeaderModel("Short Interest"));
+        list.add(new ColumnHeaderModel("Dividend Rate"));
+        list.add(new ColumnHeaderModel("Dividend Yield"));
+        list.add(new ColumnHeaderModel("Latest EPS"));
+        //list.add(new ColumnHeaderModel("Latest EPS Date"));
+        list.add(new ColumnHeaderModel("Float"));
+        list.add(new ColumnHeaderModel("Return on Equity"));
+        list.add(new ColumnHeaderModel("Return on Assets"));
+        list.add(new ColumnHeaderModel("Consensus EPS"));
+        list.add(new ColumnHeaderModel("EPS Surprise Percent"));
+        list.add(new ColumnHeaderModel("EBITDA"));
+        list.add(new ColumnHeaderModel("Revenue"));
+        list.add(new ColumnHeaderModel("Gross Profit"));
+        list.add(new ColumnHeaderModel("Cash"));
+        list.add(new ColumnHeaderModel("Dept"));
+        list.add(new ColumnHeaderModel("12M Trailing EPS"));
+        list.add(new ColumnHeaderModel("Revenue per Share"));
+        list.add(new ColumnHeaderModel("Revenue per Employee"));
+        list.add(new ColumnHeaderModel("PE Ratio"));
+        list.add(new ColumnHeaderModel("PE Ratio High"));
+        list.add(new ColumnHeaderModel("PE Ratio Low"));
+        list.add(new ColumnHeaderModel("Profit Margin"));
+        list.add(new ColumnHeaderModel("Price to Sales"));
+        list.add(new ColumnHeaderModel("Price to Book"));
+        list.add(new ColumnHeaderModel("200 Day Moving Avg"));
+        list.add(new ColumnHeaderModel("50 Day Moving Avg"));
+        list.add(new ColumnHeaderModel("Institutional Percent"));
+        list.add(new ColumnHeaderModel("Insider Percent"));
+        list.add(new ColumnHeaderModel("Short Ratio"));
+        list.add(new ColumnHeaderModel("5Y Change"));
+        list.add(new ColumnHeaderModel("2Y Change"));
+        list.add(new ColumnHeaderModel("1Y Change"));
+        list.add(new ColumnHeaderModel("YTD Change"));
+        list.add(new ColumnHeaderModel("6M Change"));
+        list.add(new ColumnHeaderModel("3M Change"));
+        list.add(new ColumnHeaderModel("1M Change"));
+        list.add(new ColumnHeaderModel("30D Change"));
+        list.add(new ColumnHeaderModel("5D Change"));
 
         return list;
     }
@@ -137,23 +145,51 @@ public class MyTableViewModel {
             List<CellModel> list = new ArrayList<>();
 
             // The order should be same with column header list;
-            list.add(new CellModel("1-" + i, stock.getSymbol()));          // "Id"
-            list.add(new CellModel("2-" + i, stock.getCompanyName()));        // "Name"
-            list.add(new CellModel("3-" + i, stock.getCEO()));    // "Nickname"
-            /*
-            list.add(new CellModel("4-" + i, user.email));       // "Email"
-            list.add(new CellModel("5-" + i, user.birthdate));   // "BirthDay"
-            list.add(new CellModel("6-" + i, user.gender));      // "Gender"
-            list.add(new CellModel("7-" + i, user.age));         // "Age"
-            list.add(new CellModel("8-" + i, user.job));         // "Job"
-            list.add(new CellModel("9-" + i, user.salary));      // "Salary"
-            list.add(new CellModel("10-" + i, user.created_at)); // "CreatedAt"
-            list.add(new CellModel("11-" + i, user.updated_at)); // "UpdatedAt"
-            list.add(new CellModel("12-" + i, user.address));    // "Address"
-            list.add(new CellModel("13-" + i, user.zipcode));    // "Zip Code"
-            list.add(new CellModel("14-" + i, user.mobile));     // "Phone"
-            list.add(new CellModel("15-" + i, user.fax));        // "Fax"
-            */
+            int row = 1;
+            list.add(new CellModel(row++ + "-" + i, stock.getCompanyName()));               //Company Name
+            list.add(new CellModel(row++ + "-" + i, stock.getMarketcap()));                 //Market Cap
+            list.add(new CellModel(row++ + "-" + i, stock.getBeta()));                      //Beta
+            list.add(new CellModel(row++ + "-" + i, stock.getWeek52high()));                //52W High
+            list.add(new CellModel(row++ + "-" + i, stock.getWeek52low()));                 //52W Low
+            list.add(new CellModel(row++ + "-" + i, stock.getWeek52change()));              //52W Change
+            list.add(new CellModel(row++ + "-" + i, stock.getShortInterest()));             //Short Interest
+            list.add(new CellModel(row++ + "-" + i, stock.getDividendRate()));              //Dividend Rate
+            list.add(new CellModel(row++ + "-" + i, stock.getDividendYield()));             //Dividend Yield
+            list.add(new CellModel(row++ + "-" + i, stock.getLatestEPS()));                 //Latest EPS
+            //list.add(new CellModel(row++ + "-" + i, stock.getLatestEPSDate()));             //Latest EPS Date
+            list.add(new CellModel(row++ + "-" + i, stock.getFloat()));                     //Float
+            list.add(new CellModel(row++ + "-" + i, stock.getReturnOnEquity()));            //Return on Equity
+            list.add(new CellModel(row++ + "-" + i, stock.getReturnOnAssets()));            //Return on Assets
+            list.add(new CellModel(row++ + "-" + i, stock.getConsensusEPS()));              //Consensus EPS
+            list.add(new CellModel(row++ + "-" + i, stock.getEPSSurprisePercent()));        //EPS Surprise Percent
+            list.add(new CellModel(row++ + "-" + i, stock.getEBITDA()));                    //EBITDA
+            list.add(new CellModel(row++ + "-" + i, stock.getRevenue()));                   //Revenue
+            list.add(new CellModel(row++ + "-" + i, stock.getGrossProfit()));               //Gross Profit
+            list.add(new CellModel(row++ + "-" + i, stock.getCash()));                      //Cash
+            list.add(new CellModel(row++ + "-" + i, stock.getDebt()));                      //Dept
+            list.add(new CellModel(row++ + "-" + i, stock.getTtmEPS()));                    //12M Trailing EPS
+            list.add(new CellModel(row++ + "-" + i, stock.getRevenuePerShare()));           //Revenue per Share
+            list.add(new CellModel(row++ + "-" + i, stock.getRevenuePerEmployee()));        //Revenue per Employee
+            list.add(new CellModel(row++ + "-" + i, stock.getPeRatio()));                   //PE Ratio
+            list.add(new CellModel(row++ + "-" + i, stock.getPeRatioHigh()));               //PE Ratio High
+            list.add(new CellModel(row++ + "-" + i, stock.getPeRatioLow()));                //PE Ratio Low
+            list.add(new CellModel(row++ + "-" + i, stock.getProfitMargin()));              //Profit Margin
+            list.add(new CellModel(row++ + "-" + i, stock.getPriceToSales()));              //Price to Sales
+            list.add(new CellModel(row++ + "-" + i, stock.getPriceToBook()));               //Price to Book
+            list.add(new CellModel(row++ + "-" + i, stock.getDay200MovingAvg()));           //200 Day Moving Avg
+            list.add(new CellModel(row++ + "-" + i, stock.getDay50MovingAvg()));            //50 Day Moving Avg
+            list.add(new CellModel(row++ + "-" + i, stock.getInstitutionPercent()));        //Institutional Percent
+            list.add(new CellModel(row++ + "-" + i, stock.getInsiderPercent()));            //Insider Percent
+            list.add(new CellModel(row++ + "-" + i, stock.getShortRatio()));                //Short Ratio
+            list.add(new CellModel(row++ + "-" + i, stock.getYear5ChangePercent()));        //5Y Change
+            list.add(new CellModel(row++ + "-" + i, stock.getYear2ChangePercent()));        //2Y Change
+            list.add(new CellModel(row++ + "-" + i, stock.getYear1ChangePercent()));        //1Y Change
+            list.add(new CellModel(row++ + "-" + i, stock.getYtdChangePercent()));          //YTD Change
+            list.add(new CellModel(row++ + "-" + i, stock.getMonth6ChangePercent()));       //6M Change
+            list.add(new CellModel(row++ + "-" + i, stock.getMonth3ChangePercent()));       //3M Change
+            list.add(new CellModel(row++ + "-" + i, stock.getMonth1ChangePercent()));       //1M Change
+            list.add(new CellModel(row++ + "-" + i, stock.getDay30ChangePercent()));        //30D Change
+            list.add(new CellModel(row++ + "-" + i, stock.getDay5ChangePercent()));         //5D Change
 
             lists.add(list);
         }
@@ -161,11 +197,11 @@ public class MyTableViewModel {
         return lists;
     }
 
-    private List<RowHeaderModel> createRowHeaderList(int size) {
+    private List<RowHeaderModel> createRowHeaderList(List<Stock> stockList) {
         List<RowHeaderModel> list = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            // In this example, Row headers just shows the index of the TableView List.
-            list.add(new RowHeaderModel(String.valueOf(i + 1)));
+        for (int i = 0; i < stockList.size(); i++) {
+            Stock stock = stockList.get(i);
+            list.add(new RowHeaderModel(stock.getSymbol()));
         }
         return list;
     }
@@ -185,6 +221,6 @@ public class MyTableViewModel {
     public void generateListForTableView(List<Stock> stocks) {
         mColumnHeaderModelList = createColumnHeaderModelList();
         mCellModelList = createCellModelList(stocks);
-        mRowHeaderModelList = createRowHeaderList(stocks.size());
+        mRowHeaderModelList = createRowHeaderList(stocks);
     }
 }

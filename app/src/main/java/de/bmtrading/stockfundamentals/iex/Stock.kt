@@ -20,13 +20,13 @@ data class Stock(/**Company*/
                  val week52high: Double = 0.0,
                  val week52low: Double = 0.0,
                  val week52change: Double = 0.0,
-                 val shortInterest: Double = 0.0,
+                 val shortInterest: Long = 0,
                  //val shortDate: String = "",
                  val dividendRate: Double = 0.0,
                  val dividendYield: Double = 0.0,
                  val exDividendRate: Double = 0.0,
                  val latestEPS: Double = 0.0,
-                 val latestEPSDate: String = "",
+                 //val latestEPSDate: String = "",
                  val sharesOutstanding: Long = 0,
                  val float: Long = 0,
                  val returnOnEquity: Double = 0.0,
@@ -40,8 +40,8 @@ data class Stock(/**Company*/
                  val cash: Long = 0,
                  val debt: Long = 0,
                  val ttmEPS: Double = 0.0,
-                 val revenuePerShare: Long = 0,
-                 val revenuePerEmployee: Long = 0,
+                 val revenuePerShare: Double = 0.0,
+                 val revenuePerEmployee: Double = 0.0,
                  val peRatioHigh: Double = 0.0,
                  val peRatioLow: Double = 0.0,
                  val returnOnAssets: Double = 0.0,
@@ -117,30 +117,3 @@ data class Stock(/**Company*/
         return super.hashCode()
     }
 }
-
-/*
-Qualität
-1. Eigenkapitalrendite (returnOnEquity)
-2. Gewinnmarge (profitMargin)
-3. Eigenkapitalquote
-
-Bewertung
-4. Kurs-Gewinn-Verhältnis (KGV) über 5 Jahre
-5. Kurs-Gewinn-Verhältnis im aktuellen Jahr (peRatio)
-
-Stimmung
-6. Analystenmeinungen
-7. Reaktion auf die letzten Quartalszahlen
-
-Momentum
-8. Gewinnrevisionen
-9. 6-Monats-Kursverlauf (month6ChangePercent)
-10. 1-Jahres-Kursverlauf (year1ChangePercent)
-11. Kursmomentum
-
-Technik
-12. Reversaleffekt
-
-Wachstum
-13. Gewinnwachstum
-        */

@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
         if(mStockList == null) {
             Thread(Runnable {
                 val symbols = mIexApiController.getSP500Symbols()
-                val types = listOf(Types.company.name, Types.stats.name)
+                val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
                 mStockList = mIexApiController.getStocksList(symbols, types)
             }).start()
         }
