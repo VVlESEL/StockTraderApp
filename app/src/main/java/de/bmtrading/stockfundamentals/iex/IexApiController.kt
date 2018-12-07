@@ -1,15 +1,17 @@
 package iex
 
 import android.util.Log
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Klaxon
-import com.beust.klaxon.Parser
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import org.json.JSONObject
 import org.jsoup.Jsoup
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import com.google.gson.JsonObject
+import org.json.JSONArray
+
 
 class IexApiController {
     var mProgress = 0.0
@@ -44,11 +46,11 @@ class IexApiController {
     /**
      * Returns a list of the requested stocks containing information about the requested types
      */
-    @Suppress("UNCHECKED_CAST")
     fun getStocksList(symbolsList: List<String>, typesList: List<String>): List<Stock> {
         mProgress = 0.0
 
         val stocksList = ArrayList<Stock>()
+        val gson = Gson()
 
         var counter = 0
         var startIndex = 0
@@ -56,56 +58,60 @@ class IexApiController {
             if(i % 50 == 0 || i == symbolsList.size) {
                 val data = getKeyFiguresList(symbolsList.subList(startIndex,i),typesList)
 
-                val parser = Parser()
-                val dataStringBuilder = StringBuilder(data)
-
                 Log.d("StockFundamentals","getStockList: Progress is $i/${symbolsList.size}...")
                 startIndex = i+1
 
-                val jsonObj: JsonObject = parser.parse(dataStringBuilder) as JsonObject
+                val jsonObj = JSONObject(data)
 
-                Log.d("StockFundamentals",data.toString())
-                jsonObj.map { map ->
+                jsonObj.keys().forEach { s ->
                     counter++
                     mProgress = counter/symbolsList.size.toDouble()
 
-                    val stockObj = JsonObject()
+                    val stockObj = JSONObject()
+                    val obj = jsonObj.getJSONObject(s)
 
-                    val obj = map.value as JsonObject
-
-                    val companyNamne = Types.company.name
-                    if(obj[companyNamne] != null) {
-                        val company = obj[companyNamne] as JsonObject
-                        stockObj.putAll(company)
+                    val companyName = Types.company.name
+                    if (obj[companyName] != null) {
+                        val temp = obj.getJSONObject(companyName)
+                        temp.keys().forEach {
+                            stockObj.put(it,temp[it])
+                        }
                     }
                     val statsName = Types.stats.name
-                    if(obj[statsName] != null) {
-                        val stats = obj[statsName] as JsonObject
-                        stockObj.putAll(stats)
+                    if (obj[statsName] != null) {
+                        val temp = obj.getJSONObject(statsName)
+                        temp.keys().forEach {
+                            stockObj.put(it,temp[it])
+                        }
                     }
                     val quoteName = Types.quote.name
-                    if(obj[quoteName] != null) {
-                        val quote = obj[quoteName] as JsonObject
-                        stockObj.putAll(quote)
+                    if (obj[quoteName] != null) {
+                        val temp = obj.getJSONObject(quoteName)
+                        temp.keys().forEach {
+                            stockObj.put(it,temp[it])
+                        }
                     }
 
-                    val stock = Klaxon().parse<Stock>(stockObj.toJsonString())
-                    if(stock != null) stocksList.add(stock)
+                    val stock = gson.fromJson<Stock>(stockObj.toString(),Stock::class.java)
+                    if (stock != null) stocksList.add(stock)
 
                     val financialsName = Types.financials.name
                     if(typesList.contains(financialsName) && obj[financialsName] != null) {
-                        val financialsArr = (obj[financialsName] as JsonObject)[financialsName] as JsonArray<JsonObject>
-                        stock?.financials = financialsArr
+                        val temp = obj.getJSONObject(financialsName)
+                        val tempArr = temp.getJSONArray(financialsName)
+                        stock?.financials = tempArr
                     }
                     val earningsName = Types.earnings.name
                     if(typesList.contains(earningsName) && obj[earningsName] != null) {
-                        val earningsArr = (obj[earningsName] as JsonObject)[earningsName] as JsonArray<JsonObject>
-                        stock?.earnings = earningsArr
+                        val temp = obj.getJSONObject(earningsName)
+                        val tempArr = temp.getJSONArray(earningsName)
+                        stock?.earnings = tempArr
                     }
                     val newsName = Types.news.name
                     if(typesList.contains(newsName) && obj[newsName] != null) {
-                        val newsArr= obj[newsName] as JsonArray<JsonObject>
-                        stock?.news = newsArr
+                        val temp = obj.getJSONObject(newsName)
+                        val tempArr = temp.getJSONArray(newsName)
+                        stock?.news = tempArr
                     }
                 }
             }
@@ -148,17 +154,14 @@ class IexApiController {
      */
     @Suppress("UNCHECKED_CAST")
     fun getAllSymbols(): ArrayList<String> {
-        val res = fetchData(Endpoints.SYMBOLS)
-
-        val parser = Parser()
-        val resString = StringBuilder(res)
-        val jsonArr: JsonArray<String> = parser.parse(resString) as JsonArray<String>
-
         val list = ArrayList<String>()
 
-        jsonArr.mapChildren { obj ->
-            if(obj["type"] == "cs"){
-                list.add(obj["symbol"] as String)
+        val res = fetchData(Endpoints.SYMBOLS)
+        val jsonArr = JSONArray(res)
+        for(i in 0 until jsonArr.length()-1) {
+            val jsonObj = jsonArr.getJSONObject(i)
+            if(jsonObj["type"] == "cs"){
+                list.add(jsonObj["symbol"] as String)
             }
         }
 

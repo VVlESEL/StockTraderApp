@@ -33,11 +33,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    // Klaxon Json Parser
-    implementation 'com.beust:klaxon:3.0.1'
+    // Gson Json Parser
+    implementation "com.google.code.gson:gson:$gson_version"
 
     // Jsoup Html Parser
-    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation "org.jsoup:jsoup:$jsoup_version"
 
     // TableView
     implementation "com.evrencoskun.library:tableview:$tableview_version"

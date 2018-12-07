@@ -29,3 +29,5 @@ task clean(type: Delete) {
 
 ext.tableview_version="0.8.8"
 ext.moneyview_version="1.1.0"
+ext.gson_version="2.8.5"
+ext.jsoup_version="1.11.3"

@@ -11,23 +11,22 @@ import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractViewHolder;
 import de.bmtrading.stockfundamentals.R;
 import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
 
-public class CellViewHolder extends AbstractViewHolder {
+
+public class PercentCellViewHolder extends AbstractViewHolder {
     public final TextView cell_textview;
     public final LinearLayout cell_container;
 
-    public CellViewHolder(View itemView) {
+    public PercentCellViewHolder(View itemView) {
         super(itemView);
         cell_textview = itemView.findViewById(R.id.cell_data);
         cell_container = itemView.findViewById(R.id.cell_container);
     }
 
-    public void setCellModel(CellModel p_jModel, int pColumnPosition) {
-        // Change textView align by column
-        cell_textview.setGravity(ColumnHeaderViewHolder.COLUMN_TEXT_ALIGNS[pColumnPosition] |
-                Gravity.CENTER_VERTICAL);
+    public void setCellModel(CellModel p_jModel) {
 
         // Set text
-        cell_textview.setText(String.valueOf(p_jModel.getData()));
+        double amount = ((double)p_jModel.getData());
+        cell_textview.setText(String.format("%.2f%%",amount));
 
         // It is necessary to remeasure itself.
         cell_container.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;

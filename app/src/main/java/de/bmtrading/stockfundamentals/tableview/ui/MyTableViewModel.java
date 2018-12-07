@@ -11,6 +11,7 @@ import iex.Stock;
 public class MyTableViewModel {
     public static final int MONEY_TYPE = 1;
     public static final int PERCENT_CHANGE_TYPE = 2;
+    public static final int PERCENT_TYPE = 3;
 
     private List<ColumnHeaderModel> mColumnHeaderModelList;
     private List<RowHeaderModel> mRowHeaderModelList;
@@ -19,6 +20,8 @@ public class MyTableViewModel {
     public int getCellItemViewType(int column) {
         switch (column) {
             case 1:
+            case 7:
+            case 9:
             case 13:
             case 15:
             case 16:
@@ -39,6 +42,16 @@ public class MyTableViewModel {
             case 41:
             case 42:
                 return PERCENT_CHANGE_TYPE;
+            case 5:
+            case 8:
+            case 11:
+            case 12:
+            case 14:
+            case 26:
+            case 31:
+            case 32:
+            case 33:
+                return PERCENT_TYPE;
             default:
                 return 0;
         }

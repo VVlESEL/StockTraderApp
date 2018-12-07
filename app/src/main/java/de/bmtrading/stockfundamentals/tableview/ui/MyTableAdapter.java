@@ -15,6 +15,7 @@ import de.bmtrading.stockfundamentals.R;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.CellViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.ColumnHeaderViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.MoneyCellViewHolder;
+import de.bmtrading.stockfundamentals.tableview.ui.holder.PercentCellViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.PercentChangeCellViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.holder.RowHeaderViewHolder;
 import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
@@ -52,6 +53,13 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
 
                 // Create the relevant view holder
                 return new PercentChangeCellViewHolder(layout);
+            case MyTableViewModel.PERCENT_TYPE:
+                // Get default cell xml Layout
+                layout = LayoutInflater.from(mContext).inflate(R.layout
+                        .tableview_cell_layout, parent, false);
+
+                // Create the relevant view holder
+                return new PercentCellViewHolder(layout);
             default:
                 // Get default Cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout.tableview_cell_layout,
@@ -63,8 +71,7 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
     }
 
     @Override
-    public void onBindCellViewHolder(AbstractViewHolder holder, Object p_jValue, int
-            p_nXPosition, int p_nYPosition) {
+    public void onBindCellViewHolder(AbstractViewHolder holder, Object p_jValue, int p_nXPosition, int p_nYPosition) {
         CellModel cell = (CellModel) p_jValue;
 
         if (holder instanceof CellViewHolder) {
@@ -72,6 +79,8 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
             ((CellViewHolder) holder).setCellModel(cell, p_nXPosition);
         } else if (holder instanceof PercentChangeCellViewHolder) {
             ((PercentChangeCellViewHolder) holder).setCellModel(cell);
+        } else if (holder instanceof PercentCellViewHolder) {
+            ((PercentCellViewHolder) holder).setCellModel(cell);
         } else if (holder instanceof MoneyCellViewHolder) {
             ((MoneyCellViewHolder) holder).setCellModel(cell);
         }

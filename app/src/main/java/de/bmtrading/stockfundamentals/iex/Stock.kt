@@ -1,7 +1,9 @@
 package iex
 
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.JsonObject
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import org.json.JSONArray
+import org.json.JSONObject
 
 data class Stock(/**Company*/
                  val symbol: String = "",
@@ -105,9 +107,9 @@ data class Stock(/**Company*/
     //val earnings: Array<String> = arrayOf(""),
     //val news:Array<String> = arrayOf("")
                  ){
-    lateinit var financials: JsonArray<JsonObject>
-    lateinit var earnings: JsonArray<JsonObject>
-    lateinit var news: JsonArray<JsonObject>
+    lateinit var financials: JSONArray
+    lateinit var earnings: JSONArray
+    lateinit var news: JSONArray
 
     override fun equals(other: Any?): Boolean {
         return super.equals(other)

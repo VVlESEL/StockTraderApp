@@ -18,14 +18,6 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
     // Sort states
     private static final int ASCENDING = 1;
     private static final int DESCENDING = 2;
-    private static final int CLEAR = 3;
-    // Test menu items for showing / hiding row
-    private static final int ROW_HIDE = 4;
-    private static final int ROW_SHOW = 3;
-
-    //
-    private static final int TEST_ROW_INDEX = 4;
-
 
     private ColumnHeaderViewHolder m_iViewHolder;
     private ITableView m_iTableView;
@@ -57,10 +49,7 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
     private void createMenuItem() {
         this.getMenu().add(Menu.NONE, ASCENDING, 0, mContext.getString(R.string.sort_ascending));
         this.getMenu().add(Menu.NONE, DESCENDING, 1, mContext.getString(R.string.sort_descending));
-        this.getMenu().add(Menu.NONE, ROW_HIDE, 2, mContext.getString(R.string.row_hide));
-        this.getMenu().add(Menu.NONE, ROW_SHOW, 3, mContext.getString(R.string.row_show));
         // add new one ...
-
     }
 
     private void changeMenuItemVisibility() {
@@ -75,17 +64,7 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
             // Hide ASCENDING menu item
             getMenu().getItem(0).setVisible(false);
         }
-
-        // Control whether 5. row is visible or not.
-        if (m_iTableView.isRowVisible(TEST_ROW_INDEX)) {
-            // Show row menu item will be invisible
-            getMenu().getItem(3).setVisible(false);
-        } else {
-            //  Hide row menu item will be invisible
-            getMenu().getItem(2).setVisible(false);
-        }
     }
-
 
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
@@ -98,21 +77,10 @@ public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
             case DESCENDING:
                 m_iTableView.sortColumn(mXPosition, SortState.DESCENDING);
                 break;
-            case ROW_HIDE:
-                // Hide 5. row for testing process
-                // index starts from 0. That's why TEST_ROW_INDEX is 4.
-                m_iTableView.hideRow(TEST_ROW_INDEX);
-                break;
-            case ROW_SHOW:
-                // Show 5. row for testing process
-                // index starts from 0. That's why TEST_ROW_INDEX is 4.
-                m_iTableView.showRow(TEST_ROW_INDEX);
-                break;
         }
 
         // Recalculate of the width values of the columns
         m_iTableView.remeasureColumnWidth(mXPosition);
         return true;
     }
-
 }
