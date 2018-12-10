@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.holder;
+package de.bmtrading.stockfundamentals.keyfigures.ui.holder;
 
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -12,7 +12,7 @@ import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractSorterViewH
 import com.evrencoskun.tableview.sort.SortState;
 
 import de.bmtrading.stockfundamentals.R;
-import de.bmtrading.stockfundamentals.tableview.ui.model.ColumnHeaderModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.ColumnHeaderModel;
 
 public class ColumnHeaderViewHolder extends AbstractSorterViewHolder {
     final LinearLayout column_header_container;

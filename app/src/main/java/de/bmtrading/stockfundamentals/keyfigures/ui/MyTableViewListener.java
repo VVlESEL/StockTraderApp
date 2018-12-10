@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui;
+package de.bmtrading.stockfundamentals.keyfigures.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.util.Log;
 import com.evrencoskun.tableview.ITableView;
 import com.evrencoskun.tableview.listener.ITableViewListener;
 
-import de.bmtrading.stockfundamentals.tableview.ui.holder.ColumnHeaderViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.popup.ColumnHeaderLongPressPopup;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.ColumnHeaderViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.popup.ColumnHeaderLongPressPopup;
 
 public class MyTableViewListener implements ITableViewListener {
     private static final String LOG_TAG = MyTableViewListener.class.getSimpleName();

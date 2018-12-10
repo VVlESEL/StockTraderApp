@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.model;
+package de.bmtrading.stockfundamentals.keyfigures.ui.model;
 
 /**
  * Created by evrencoskun on 27.11.2017.

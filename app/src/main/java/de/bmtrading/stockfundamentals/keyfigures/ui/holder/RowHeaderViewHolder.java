@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.holder;
+package de.bmtrading.stockfundamentals.keyfigures.ui.holder;
 
 import android.support.v4.content.ContextCompat;
 import android.view.View;

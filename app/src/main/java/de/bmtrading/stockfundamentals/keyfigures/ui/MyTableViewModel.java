@@ -1,11 +1,11 @@
-package de.bmtrading.stockfundamentals.tableview.ui;
+package de.bmtrading.stockfundamentals.keyfigures.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
-import de.bmtrading.stockfundamentals.tableview.ui.model.ColumnHeaderModel;
-import de.bmtrading.stockfundamentals.tableview.ui.model.RowHeaderModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.CellModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.ColumnHeaderModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.RowHeaderModel;
 import iex.Stock;
 
 public class MyTableViewModel {
@@ -215,7 +215,7 @@ public class MyTableViewModel {
             list.add(new CellModel(row++ + "-" + i, stock.getMonth3ChangePercent()));       //3M Change
             list.add(new CellModel(row++ + "-" + i, stock.getMonth1ChangePercent()));       //1M Change
             list.add(new CellModel(row++ + "-" + i, stock.getDay30ChangePercent()));        //30D Change
-            list.add(new CellModel(row++ + "-" + i, stock.getDay5ChangePercent()));         //5D Change
+            list.add(new CellModel(row + "-" + i, stock.getDay5ChangePercent()));           //5D Change
 
             lists.add(list);
         }

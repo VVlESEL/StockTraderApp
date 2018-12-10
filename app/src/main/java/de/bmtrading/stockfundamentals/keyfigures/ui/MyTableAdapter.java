@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui;
+package de.bmtrading.stockfundamentals.keyfigures.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,15 +12,15 @@ import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractViewHolder;
 import java.util.List;
 
 import de.bmtrading.stockfundamentals.R;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.CellViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.ColumnHeaderViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.MoneyCellViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.PercentCellViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.PercentChangeCellViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.RowHeaderViewHolder;
-import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
-import de.bmtrading.stockfundamentals.tableview.ui.model.ColumnHeaderModel;
-import de.bmtrading.stockfundamentals.tableview.ui.model.RowHeaderModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.CellViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.ColumnHeaderViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.MoneyCellViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.PercentCellViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.PercentChangeCellViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.RowHeaderViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.CellModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.ColumnHeaderModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.RowHeaderModel;
 import iex.Stock;
 
 public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowHeaderModel,
@@ -42,27 +42,27 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
             case MyTableViewModel.MONEY_TYPE:
                 // Get money cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout
-                        .tableview_money_cell_layout, parent, false);
+                        .keyfigures_money_cell_layout, parent, false);
 
                 // Create the relevant view holder
                 return new MoneyCellViewHolder(layout);
             case MyTableViewModel.PERCENT_CHANGE_TYPE:
                 // Get default cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout
-                        .tableview_cell_layout, parent, false);
+                        .keyfigures_cell_layout, parent, false);
 
                 // Create the relevant view holder
                 return new PercentChangeCellViewHolder(layout);
             case MyTableViewModel.PERCENT_TYPE:
                 // Get default cell xml Layout
                 layout = LayoutInflater.from(mContext).inflate(R.layout
-                        .tableview_cell_layout, parent, false);
+                        .keyfigures_cell_layout, parent, false);
 
                 // Create the relevant view holder
                 return new PercentCellViewHolder(layout);
             default:
                 // Get default Cell xml Layout
-                layout = LayoutInflater.from(mContext).inflate(R.layout.tableview_cell_layout,
+                layout = LayoutInflater.from(mContext).inflate(R.layout.keyfigures_cell_layout,
                         parent, false);
 
                 // Create a Cell ViewHolder
@@ -90,7 +90,7 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
     @Override
     public AbstractSorterViewHolder onCreateColumnHeaderViewHolder(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(mContext).inflate(R.layout
-                .tableview_column_header_layout, parent, false);
+                .keyfigures_column_header_layout, parent, false);
 
         return new ColumnHeaderViewHolder(layout, getTableView());
     }
@@ -110,7 +110,7 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
     public AbstractViewHolder onCreateRowHeaderViewHolder(ViewGroup parent, int viewType) {
 
         // Get Row Header xml Layout
-        View layout = LayoutInflater.from(mContext).inflate(R.layout.tableview_row_header_layout,
+        View layout = LayoutInflater.from(mContext).inflate(R.layout.keyfigures_row_header_layout,
                 parent, false);
 
         // Create a Row Header ViewHolder
@@ -130,7 +130,7 @@ public class MyTableAdapter extends AbstractTableAdapter<ColumnHeaderModel, RowH
 
     @Override
     public View onCreateCornerView() {
-        return LayoutInflater.from(mContext).inflate(R.layout.tableview_corner_layout, null, false);
+        return LayoutInflater.from(mContext).inflate(R.layout.keyfigures_corner_layout, null, false);
     }
 
     @Override

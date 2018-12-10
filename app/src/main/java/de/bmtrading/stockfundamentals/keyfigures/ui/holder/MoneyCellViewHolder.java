@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.holder;
+package de.bmtrading.stockfundamentals.keyfigures.ui.holder;
 
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +10,7 @@ import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractViewHolder;
 import org.fabiomsr.moneytextview.MoneyTextView;
 
 import de.bmtrading.stockfundamentals.R;
-import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.CellModel;
 
 
 public class MoneyCellViewHolder extends AbstractViewHolder {

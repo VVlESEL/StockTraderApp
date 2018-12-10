@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.holder;
+package de.bmtrading.stockfundamentals.keyfigures.ui.holder;
 
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.evrencoskun.tableview.adapter.recyclerview.holder.AbstractViewHolder;
 
 import de.bmtrading.stockfundamentals.R;
-import de.bmtrading.stockfundamentals.tableview.ui.model.CellModel;
+import de.bmtrading.stockfundamentals.keyfigures.ui.model.CellModel;
 
 public class CellViewHolder extends AbstractViewHolder {
     public final TextView cell_textview;

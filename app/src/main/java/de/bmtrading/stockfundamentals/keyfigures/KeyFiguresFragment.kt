@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui
+package de.bmtrading.stockfundamentals.keyfigures
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,27 +10,31 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.evrencoskun.tableview.TableView
+import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
 import de.bmtrading.stockfundamentals.R
+import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableAdapter
+import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableViewListener
 
-import iex.IexApiController
 import iex.Stock
 import iex.Types
 
-class MainFragment : Fragment() {
-
-    private var mIexApiController: IexApiController = IexApiController()
+class KeyFiguresFragment : Fragment() {
     private var mTableAdapter: MyTableAdapter? = null
     private var mProgressBar: ProgressBar? = null
     private var mTextViewProgress: TextView? = null
     private var mTableView: TableView? = null
-    private var mStockList: List<Stock>? = null
+
+    companion object {
+        @JvmStatic
+        var mStockList: List<Stock>? = null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if(mStockList == null) {
             Thread(Runnable {
-                val symbols = /*listOf("AAPL","AMZN")*/mIexApiController.getSP500Symbols()
+                val symbols = mIexApiController.getSP500Symbols()
                 val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
                 mStockList = mIexApiController.getStocksList(symbols, types)
             }).start()
@@ -38,7 +42,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.keyfigures_frame, container, false)
 
         mProgressBar = view.findViewById(R.id.progressBar)
         mTextViewProgress = view.findViewById(R.id.textViewProgress)

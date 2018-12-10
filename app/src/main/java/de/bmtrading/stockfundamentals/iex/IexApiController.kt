@@ -2,15 +2,13 @@ package iex
 
 import android.util.Log
 import com.google.gson.Gson
-import com.google.gson.JsonArray
+import org.json.JSONArray
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-import com.google.gson.JsonObject
-import org.json.JSONArray
 
 
 class IexApiController {
@@ -124,7 +122,7 @@ class IexApiController {
     /**
      * Returns a JSON string with the chosen key figures for the chosen symbols list
      */
-    fun getKeyFiguresList(symbolsList: List<String>, typesList: List<String>): String {
+    private fun getKeyFiguresList(symbolsList: List<String>, typesList: List<String>): String {
         val types = StringBuilder()
         for(s in typesList) {
             if(types.isNotEmpty()) types.append(",")
@@ -148,7 +146,7 @@ class IexApiController {
 
         return res.toString()
     }
-
+/*
     /**
      * Returns a list of all available symbols
      */
@@ -167,7 +165,7 @@ class IexApiController {
 
         return list
     }
-
+*/
     /**
      * Returns a list of all S&P500 symbols
      */
@@ -188,5 +186,25 @@ class IexApiController {
         }
 
         return list
+    }
+
+    /**
+     * Returns a list of the sectors
+     */
+    fun getSectorsList(): List<Sector> {
+        val sectorList = ArrayList<Sector>()
+        val gson = Gson()
+
+        val data = fetchData(Endpoints.SECTORS)
+        val jsonArr = JSONArray(data)
+
+        for(i in 0 until jsonArr.length()-1){
+            val obj = jsonArr.getJSONObject(i)
+
+            val sector = gson.fromJson<Sector>(obj.toString(),Sector::class.java)
+            if (sector != null) sectorList.add(sector)
+        }
+
+        return sectorList
     }
 }

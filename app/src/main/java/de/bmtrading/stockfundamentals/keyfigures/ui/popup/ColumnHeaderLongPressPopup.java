@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.tableview.ui.popup;
+package de.bmtrading.stockfundamentals.keyfigures.ui.popup;
 
 import android.content.Context;
 import android.view.Menu;
@@ -9,7 +9,7 @@ import com.evrencoskun.tableview.ITableView;
 import com.evrencoskun.tableview.sort.SortState;
 
 import de.bmtrading.stockfundamentals.R;
-import de.bmtrading.stockfundamentals.tableview.ui.holder.ColumnHeaderViewHolder;
+import de.bmtrading.stockfundamentals.keyfigures.ui.holder.ColumnHeaderViewHolder;
 
 public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
         .OnMenuItemClickListener {
