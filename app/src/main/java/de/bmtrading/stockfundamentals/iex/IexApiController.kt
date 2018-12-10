@@ -5,7 +5,9 @@ import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -169,9 +171,15 @@ class IexApiController {
     /**
      * Returns a list of all S&P500 symbols
      */
+    @Throws(IOException::class)
     fun getSP500Symbols(): ArrayList<String> {
         Log.d("StockFundamentals","getSP500Symbols: Parsing wikipedia...")
-        val soup = Jsoup.parse(URL("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"),8000)
+        val soup: Document
+        try {
+            soup = Jsoup.parse(URL("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"), 8000)
+        }catch (e: Exception) {
+            throw e
+        }
         Log.d("StockFundamentals","getSP500Symbols: Finished parsing wikipedia...")
         val table = soup.select("table").first()
         val rows = table.select("tr")

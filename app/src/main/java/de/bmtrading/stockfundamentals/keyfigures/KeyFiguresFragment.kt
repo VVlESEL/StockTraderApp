@@ -1,15 +1,19 @@
 package de.bmtrading.stockfundamentals.keyfigures
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.evrencoskun.tableview.TableView
+import de.bmtrading.stockfundamentals.MainActivity
 import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
 import de.bmtrading.stockfundamentals.R
 import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableAdapter
@@ -34,9 +38,17 @@ class KeyFiguresFragment : Fragment() {
 
         if(mStockList == null) {
             Thread(Runnable {
-                val symbols = mIexApiController.getSP500Symbols()
-                val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
-                mStockList = mIexApiController.getStocksList(symbols, types)
+                try {
+                    val symbols = mIexApiController.getSP500Symbols()
+                    val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
+                    mStockList = mIexApiController.getStocksList(symbols, types)
+                }catch (e: Exception){
+                    activity?.runOnUiThread {
+                        Toast.makeText(context,e.message,Toast.LENGTH_SHORT).show()
+                        val frag = fragmentManager?.findFragmentByTag(KeyFiguresFragment::class.java.simpleName)
+                        if(frag != null) fragmentManager?.beginTransaction()?.remove(frag)?.commit()
+                    }
+                }
             }).start()
         }
     }
@@ -69,6 +81,16 @@ class KeyFiguresFragment : Fragment() {
         return view
     }
 
+    override fun onAttach(context: Context?) {
+        MainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        super.onAttach(context)
+    }
+
+    override fun onDetach() {
+        MainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        super.onDetach()
+    }
+
     private fun initializeTableView(tableView: TableView) {
         // Create TableView Adapter
         mTableAdapter = MyTableAdapter(context)
@@ -79,14 +101,14 @@ class KeyFiguresFragment : Fragment() {
     }
 
     private fun showProgressBar() {
-        Log.d(resources.getString(R.string.app_name),"Showing progress bar...")
+        Log.d(context?.resources?.getString(R.string.app_name),"Showing progress bar...")
         mProgressBar?.visibility = View.VISIBLE
         mTextViewProgress?.visibility = View.VISIBLE
         mTableView?.visibility = View.INVISIBLE
     }
 
     private fun hideProgressBar() {
-        Log.d(resources.getString(R.string.app_name),"Hiding progress bar...")
+        Log.d(context?.resources?.getString(R.string.app_name),"Hiding progress bar...")
         mProgressBar?.visibility = View.INVISIBLE
         mTextViewProgress?.visibility = View.INVISIBLE
         mTableView?.visibility = View.VISIBLE

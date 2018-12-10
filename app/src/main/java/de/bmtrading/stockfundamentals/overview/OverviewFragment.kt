@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.ProgressBar
 import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
@@ -46,10 +45,8 @@ class OverviewFragment : Fragment() {
         val runnable = object : Runnable {
             override fun run() {
                 if(mSectorList != null){
-                    val arr: Array<String> = Array(mSectorList!!.size,{_ -> ""})
-                    mSectorList!!.forEachIndexed { index, sector -> arr[index] = sector.name }
-
-                    mListView?.adapter = ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,arr)
+                    val myArrayAdapter = MyArrayAdapter(context!!,R.layout.overview_list_item_layout, mSectorList!!)
+                    mListView?.adapter = myArrayAdapter
                     hideProgressBar()
                 } else {
                     handler.postDelayed(this, 500)
