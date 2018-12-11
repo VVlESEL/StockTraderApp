@@ -3,6 +3,8 @@ package de.bmtrading.stockfundamentals.overview
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v4.widget.SwipeRefreshLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import iex.Sector
 class OverviewFragment : Fragment() {
     private var mProgressBar: ProgressBar? = null
     private var mListView: ListView? = null
+    private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
 
     companion object {
         @JvmStatic
@@ -38,6 +41,12 @@ class OverviewFragment : Fragment() {
 
         mProgressBar = view.findViewById(R.id.progressBar)
         mListView = view.findViewById(R.id.listView)
+        mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
+
+        val colorBg = ContextCompat.getColor(mSwipeRefreshLayout!!.context, R.color.unselected_background_color)
+        mSwipeRefreshLayout?.setProgressBackgroundColorSchemeColor(colorBg)
+        val colorProgress = ContextCompat.getColor(mSwipeRefreshLayout!!.context,R.color.colorAccent)
+        mSwipeRefreshLayout?.setColorSchemeColors(colorProgress)
 
         showProgressBar()
 
@@ -47,6 +56,17 @@ class OverviewFragment : Fragment() {
                 if(mSectorList != null){
                     val myArrayAdapter = MyArrayAdapter(context!!,R.layout.overview_list_item_layout, mSectorList!!)
                     mListView?.adapter = myArrayAdapter
+
+                    mSwipeRefreshLayout?.setOnRefreshListener {
+                        Thread(Runnable {
+                            mSectorList = mIexApiController.getSectorsList()
+                            activity?.runOnUiThread({
+                                myArrayAdapter.notifyDataSetChanged()
+                                mSwipeRefreshLayout?.isRefreshing = false
+                            })
+                        }).start()
+                    }
+
                     hideProgressBar()
                 } else {
                     handler.postDelayed(this, 500)

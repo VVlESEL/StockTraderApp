@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import de.bmtrading.stockfundamentals.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MyArrayAdapter(con: Context, resourceId: Int, list: List<Sector>) :
         ArrayAdapter<Sector>(con, resourceId, list) {
@@ -22,12 +24,14 @@ class MyArrayAdapter(con: Context, resourceId: Int, list: List<Sector>) :
         }
         // Lookup view for data population
         val tvSector = view!!.findViewById(R.id.textViewSector) as TextView
-        val tvChange = view!!.findViewById(R.id.textViewChange) as TextView
+        val tvChange = view.findViewById(R.id.textViewChange) as TextView
+        val tvChangeTime = view.findViewById(R.id.textViewChangeTime) as TextView
         // Populate the data into the template view using the data object
         tvSector.text = sector.name
         tvChange.text = "${String.format("%.2f",sector.performance*100)}%"
+        tvChangeTime.text = convertLongToTime(sector.lastUpdated)
         //set color
-        var color: Int
+        val color: Int
         when(sector.performance >= 0){
             true -> color = ContextCompat.getColor(tvChange.context, R.color.profit_percent_text_color)
             false -> color = ContextCompat.getColor(tvChange.context, R.color.loss_percent_text_color)
@@ -36,5 +40,11 @@ class MyArrayAdapter(con: Context, resourceId: Int, list: List<Sector>) :
 
         // Return the completed view to render on screen
         return view
+    }
+
+    private fun convertLongToTime(time: Long): String {
+        val date = Date(time)
+        val format = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
+        return format.format(date)
     }
 }

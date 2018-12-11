@@ -5,4 +5,5 @@
     <dimen name="table_view_default_text_size">11sp</dimen>
 
     <dimen name="overview_default_text_size">22sp</dimen>
+    <dimen name="overview_small_text_size">11sp</dimen>
 </resources>

@@ -20,6 +20,7 @@ class IexApiController {
      * Returns a json string resulting form a call to the chosen url
      */
     private fun fetchData(stringUrl: String) : String {
+        Log.d("StockFundamentals","fetchData: Retrieving data...")
         val url = URL(stringUrl)
         val httpURLConnection = url.openConnection() as HttpURLConnection
         val inputStream = httpURLConnection.inputStream
@@ -32,7 +33,7 @@ class IexApiController {
             response.append(inputLine)
             inputLine = bufferedReader.readLine()
         }
-
+        Log.d("StockFundamentals","fetchData: Finished retrieving data...")
         return response.toString()
     }
 
