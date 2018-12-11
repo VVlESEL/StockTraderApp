@@ -13,7 +13,6 @@ import de.bmtrading.stockfundamentals.keyfigures.ui.holder.ColumnHeaderViewHolde
 
 public class ColumnHeaderLongPressPopup extends PopupMenu implements PopupMenu
         .OnMenuItemClickListener {
-    private static final String LOG_TAG = ColumnHeaderLongPressPopup.class.getSimpleName();
 
     // Sort states
     private static final int ASCENDING = 1;
