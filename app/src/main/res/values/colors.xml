@@ -6,6 +6,7 @@
 
     <color name="selected_background_color">#15a4fa</color>
     <color name="unselected_background_color">#1c324a</color>
+    <color name="unselected_background_color_shade">#901c324a</color>
     <color name="shadow_background_color">#28415f</color>
     <color name="unselected_header_background_color">#1f3650</color>
 
