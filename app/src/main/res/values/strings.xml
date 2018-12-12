@@ -5,6 +5,7 @@
     <string name="sure_exit">Press again to exit</string>
 
     <!-- menu -->
+    <string name="header_title">Menu</string>
     <string name="key_figures">Key Figures</string>
 
     <!-- key figures -->
