@@ -4,12 +4,16 @@
     <!-- main activity -->
     <string name="sure_exit">Press again to exit</string>
 
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
     <!-- menu -->
     <string name="header_title">Menu</string>
+    <string name="sectors">Sectors</string>
+    <string name="filter">Filter</string>
     <string name="key_figures">Key Figures</string>
 
     <!-- key figures -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sort_ascending">Sort Ascending</string>
     <string name="sort_descending">Sort Descending</string>
     <string name="clear_sorting">Clear</string>

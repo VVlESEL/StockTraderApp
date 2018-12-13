@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/unselected_background_color"
+    tools:context=".filter.FilterFragment">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabs"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:borderlessButtonStyle"
+            android:layout_weight="1"
+            android:text="@string/save" />
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:borderlessButtonStyle"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
+    </LinearLayout>
+</RelativeLayout>

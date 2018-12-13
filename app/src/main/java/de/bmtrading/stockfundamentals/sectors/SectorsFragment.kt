@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.overview
+package de.bmtrading.stockfundamentals.sectors
 
 import android.os.Bundle
 import android.os.Handler
@@ -13,10 +13,9 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
 import de.bmtrading.stockfundamentals.R
-import de.bmtrading.stockfundamentals.keyfigures.KeyFiguresFragment.Companion.mStockList
 import iex.Sector
 
-class OverviewFragment : Fragment() {
+class SectorsFragment : Fragment() {
     private var mProgressBar: ProgressBar? = null
     private var mListView: ListView? = null
     private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
@@ -29,7 +28,7 @@ class OverviewFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(mStockList == null) {
+        if(mSectorList == null) {
             Thread(Runnable {
                 mSectorList = mIexApiController.getSectorsList()
             }).start()
@@ -37,7 +36,7 @@ class OverviewFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.overview_frame, container, false)
+        val view = inflater.inflate(R.layout.sectors_frame, container, false)
 
         mProgressBar = view.findViewById(R.id.progressBar)
         mListView = view.findViewById(R.id.listView)
@@ -54,7 +53,7 @@ class OverviewFragment : Fragment() {
         val runnable = object : Runnable {
             override fun run() {
                 if(mSectorList != null){
-                    val myArrayAdapter = MyArrayAdapter(context!!,R.layout.overview_list_item_layout, mSectorList!!)
+                    val myArrayAdapter = MyArrayAdapter(context!!,R.layout.sectors_list_item_layout, mSectorList!!)
                     mListView?.adapter = myArrayAdapter
 
                     mSwipeRefreshLayout?.setOnRefreshListener {
@@ -73,7 +72,7 @@ class OverviewFragment : Fragment() {
                 }
             }
         }
-        handler.postDelayed(runnable, 500)
+        handler.post(runnable)
 
         return view
     }

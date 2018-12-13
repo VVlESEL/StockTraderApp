@@ -5,8 +5,9 @@ import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import de.bmtrading.stockfundamentals.filter.FilterFragment
 import de.bmtrading.stockfundamentals.keyfigures.KeyFiguresFragment
-import de.bmtrading.stockfundamentals.overview.OverviewFragment
+import de.bmtrading.stockfundamentals.sectors.SectorsFragment
 import iex.IexApiController
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().add(R.id.content_frame, OverviewFragment(), OverviewFragment::class.java.simpleName).commit()
+            supportFragmentManager.beginTransaction().add(R.id.content_frame, SectorsFragment(), SectorsFragment::class.java.simpleName).commit()
         }
 
         mDrawerLayout = findViewById(R.id.drawer_layout)
@@ -32,8 +33,13 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             mDrawerLayout.closeDrawers()
 
+            if(menuItem.itemId == R.id.nav_sectors){
+                supportFragmentManager.beginTransaction().add(R.id.content_frame, SectorsFragment(), SectorsFragment::class.java.simpleName).commit()
+            }
+            if(menuItem.itemId == R.id.nav_filter){
+                supportFragmentManager.beginTransaction().add(R.id.content_frame, FilterFragment(), FilterFragment::class.java.simpleName).commit()
+            }
             if(menuItem.itemId == R.id.nav_key_figures){
-                //disable nav drawer to prevent scroll bug
                 supportFragmentManager.beginTransaction().add(R.id.content_frame, KeyFiguresFragment(), KeyFiguresFragment::class.java.simpleName).commit()
             }
             true

@@ -1,4 +1,4 @@
-package de.bmtrading.stockfundamentals.overview
+package de.bmtrading.stockfundamentals.sectors
 
 import android.content.Context
 import android.support.v4.content.ContextCompat
@@ -16,11 +16,12 @@ class MyArrayAdapter(con: Context, resourceId: Int, list: List<Sector>) :
         ArrayAdapter<Sector>(con, resourceId, list) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+
         val sector = getItem(position)
         // Check if an existing view is being reused, otherwise inflate the view
         var view = convertView
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.overview_list_item_layout, parent, false)
+            view = LayoutInflater.from(context).inflate(R.layout.sectors_list_item_layout, parent, false)
         }
         // Lookup view for data population
         val tvSector = view!!.findViewById(R.id.textViewSector) as TextView
