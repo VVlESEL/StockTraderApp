@@ -1,6 +1,352 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange5y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_5_y"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin5y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange5y"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax5y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin5y"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange2y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_2_y"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin2y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange2y"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax2y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin2y"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange1y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_1_y"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin1y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange1y"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax1y"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin1y"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChangeYtd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_ytd"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinYtd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChangeYtd"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxYtd"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinYtd"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange6m"
+
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_6_m"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin6m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange6m"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax6m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin6m"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange3m"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_3_m"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin3m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange3m"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax3m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin3m"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange1m"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_1_m"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin1m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange1m"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax1m"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin1m"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange30d"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_30_d"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin30d"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange30d"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax30d"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin30d"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewChange5d"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/change_5_d"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMin5d"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewChange5d"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMax5d"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMin5d"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">StockFundamentals</string>
 
-    <!-- main activity -->
+    <!-- general -->
     <string name="sure_exit">Press again to exit</string>
 
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+
+    <string name="min">Min</string>
+    <string name="max">Max</string>
 
     <!-- menu -->
     <string name="header_title">Menu</string>
@@ -17,4 +21,16 @@
     <string name="sort_ascending">Sort Ascending</string>
     <string name="sort_descending">Sort Descending</string>
     <string name="clear_sorting">Clear</string>
+
+
+    <string name="change_5_y">5Y Change</string>
+    <string name="change_2_y">2Y Change</string>
+    <string name="change_1_y">1Y Change</string>
+    <string name="change_ytd">YTD Change</string>
+    <string name="change_6_m">6M Change</string>
+    <string name="change_3_m">3M Change</string>
+    <string name="change_1_m">1M Change</string>
+    <string name="change_30_d">30D Change</string>
+    <string name="change_5_d">5D Change</string>
+
 </resources>
