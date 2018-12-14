@@ -10,13 +10,10 @@ import android.view.ViewGroup
 import de.bmtrading.stockfundamentals.R
 
 class FilterFragment : Fragment() {
-    private var mSectionsPageAdapter: SectionsPageAdapter? = null
     private var mViewPager: ViewPager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.filter_frame, container, false)
-
-        mSectionsPageAdapter = SectionsPageAdapter(activity!!.supportFragmentManager)
 
         mViewPager = view.findViewById(R.id.container)
         setupViewPager(mViewPager!!)
@@ -28,7 +25,7 @@ class FilterFragment : Fragment() {
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        val adapter = SectionsPageAdapter(activity!!.supportFragmentManager)
+        val adapter = SectionsPageAdapter(childFragmentManager)
         adapter.addFragment(Tab1Fragment(),"Tab 1")
         adapter.addFragment(Tab2Fragment(),"Tab 2")
         viewPager.adapter = adapter

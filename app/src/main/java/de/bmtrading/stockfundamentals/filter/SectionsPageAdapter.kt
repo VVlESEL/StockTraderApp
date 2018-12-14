@@ -2,9 +2,9 @@ package de.bmtrading.stockfundamentals.filter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 
-class SectionsPageAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm){
+class SectionsPageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
     private val mFragmentList: MutableList<Fragment> = mutableListOf()
     private val mFragmentTitleList: MutableList<String> = mutableListOf()
 
