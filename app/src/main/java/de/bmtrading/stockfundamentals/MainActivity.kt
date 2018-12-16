@@ -4,26 +4,22 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuInflater
 import android.widget.Toast
 import de.bmtrading.stockfundamentals.filter.FilterFragment
+import de.bmtrading.stockfundamentals.filter.MyDatabaseHelper
 import de.bmtrading.stockfundamentals.keyfigures.KeyFiguresFragment
 import de.bmtrading.stockfundamentals.sectors.SectorsFragment
 import iex.IexApiController
 
 class MainActivity : AppCompatActivity() {
     private var mBackPressedTimestamp: Long = 0
-
-    companion object {
-        @JvmStatic
-        val mIexApiController: IexApiController = IexApiController()
-        lateinit var mDrawerLayout: DrawerLayout
-    }
+    lateinit var mDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MyDatabaseHelper.initialize(this)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().add(R.id.content_frame, SectorsFragment(), SectorsFragment::class.java.simpleName).commit()

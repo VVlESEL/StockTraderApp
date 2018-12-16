@@ -11,8 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.ProgressBar
-import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
 import de.bmtrading.stockfundamentals.R
+import iex.IexApiController
 import iex.Sector
 
 class SectorsFragment : Fragment() {
@@ -30,7 +30,7 @@ class SectorsFragment : Fragment() {
 
         if(mSectorList == null) {
             Thread(Runnable {
-                mSectorList = mIexApiController.getSectorsList()
+                mSectorList = IexApiController.getSectorsList()
             }).start()
         }
     }
@@ -58,7 +58,7 @@ class SectorsFragment : Fragment() {
 
                     mSwipeRefreshLayout?.setOnRefreshListener {
                         Thread(Runnable {
-                            mSectorList = mIexApiController.getSectorsList()
+                            mSectorList = IexApiController.getSectorsList()
                             activity?.runOnUiThread({
                                 myArrayAdapter.notifyDataSetChanged()
                                 mSwipeRefreshLayout?.isRefreshing = false

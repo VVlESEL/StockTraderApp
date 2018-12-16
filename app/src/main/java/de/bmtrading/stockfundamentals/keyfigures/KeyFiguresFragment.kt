@@ -11,11 +11,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.evrencoskun.tableview.TableView
-import de.bmtrading.stockfundamentals.MainActivity
-import de.bmtrading.stockfundamentals.MainActivity.Companion.mIexApiController
 import de.bmtrading.stockfundamentals.R
 import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableAdapter
 import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableViewListener
+import iex.IexApiController
 
 import iex.Stock
 import iex.Types
@@ -34,8 +33,6 @@ class KeyFiguresFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setHasOptionsMenu(true)
-
         if (mStockList == null) {
             refreshStockList()
         }
@@ -50,16 +47,33 @@ class KeyFiguresFragment : Fragment() {
 
         initializeTableView(mTableView!!)
 
+        val handler = Handler()
+        val runnable = object : Runnable {
+            override fun run() {
+                if (mStockList != null) {
+                    mTableAdapter?.setStockList(mStockList)
+                    hideProgressBar()
+                    setHasOptionsMenu(true)
+                } else {
+                    handler.postDelayed(this, 500)
+                    mTextViewProgress?.text = "${String.format("%.0f", IexApiController.mProgress * 100)}%"
+                }
+            }
+        }
+        handler.post(runnable)
+
         return view
     }
 
     override fun onAttach(context: Context?) {
-        MainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        val drawer: DrawerLayout = activity!!.findViewById(R.id.drawer_layout)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         super.onAttach(context)
     }
 
     override fun onDetach() {
-        MainActivity.mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        val drawer: DrawerLayout = activity!!.findViewById(R.id.drawer_layout)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
         super.onDetach()
     }
 
@@ -107,9 +121,9 @@ class KeyFiguresFragment : Fragment() {
 
         Thread(Runnable {
             try {
-                val symbols = mIexApiController.getSP500Symbols()
+                val symbols = IexApiController.getSP500Symbols()
                 val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
-                mStockList = mIexApiController.getStocksList(symbols, types)
+                mStockList = IexApiController.getStocksList(symbols, types)
             } catch (e: Exception) {
                 activity?.runOnUiThread {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
@@ -118,20 +132,5 @@ class KeyFiguresFragment : Fragment() {
                 }
             }
         }).start()
-
-        val handler = Handler()
-        val runnable = object : Runnable {
-            override fun run() {
-                if (mStockList != null) {
-                    mTableAdapter?.setStockList(mStockList)
-                    hideProgressBar()
-                    setHasOptionsMenu(true)
-                } else {
-                    handler.postDelayed(this, 500)
-                    mTextViewProgress?.text = "${String.format("%.0f", mIexApiController.mProgress * 100)}%"
-                }
-            }
-        }
-        handler.post(runnable)
     }
 }

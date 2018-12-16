@@ -13,7 +13,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 
-class IexApiController {
+object IexApiController {
     var mProgress = 0.0
 
     /**
