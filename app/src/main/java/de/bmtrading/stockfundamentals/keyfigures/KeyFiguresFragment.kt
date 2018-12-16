@@ -12,6 +12,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.evrencoskun.tableview.TableView
 import de.bmtrading.stockfundamentals.R
+import de.bmtrading.stockfundamentals.filter.Filters
+import de.bmtrading.stockfundamentals.filter.Filters.checkStock
+import de.bmtrading.stockfundamentals.keyfigures.KeyFiguresFragment.Companion.mStockList
 import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableAdapter
 import de.bmtrading.stockfundamentals.keyfigures.ui.MyTableViewListener
 import iex.IexApiController
@@ -30,14 +33,6 @@ class KeyFiguresFragment : Fragment() {
         var mStockList: List<Stock>? = null
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        if (mStockList == null) {
-            refreshStockList()
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.keyfigures_frame, container, false)
 
@@ -47,20 +42,13 @@ class KeyFiguresFragment : Fragment() {
 
         initializeTableView(mTableView!!)
 
-        val handler = Handler()
-        val runnable = object : Runnable {
-            override fun run() {
-                if (mStockList != null) {
-                    mTableAdapter?.setStockList(mStockList)
-                    hideProgressBar()
-                    setHasOptionsMenu(true)
-                } else {
-                    handler.postDelayed(this, 500)
-                    mTextViewProgress?.text = "${String.format("%.0f", IexApiController.mProgress * 100)}%"
-                }
-            }
+        if (mStockList != null) {
+            mTableAdapter?.setStockList(mStockList)
+            hideProgressBar()
+            setHasOptionsMenu(true)
+        }else{
+            refreshStockList()
         }
-        handler.post(runnable)
 
         return view
     }
@@ -123,7 +111,9 @@ class KeyFiguresFragment : Fragment() {
             try {
                 val symbols = IexApiController.getSP500Symbols()
                 val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
-                mStockList = IexApiController.getStocksList(symbols, types)
+                mStockList = IexApiController.getStocksList(symbols, types).filter {
+                    checkStock(it)
+                }
             } catch (e: Exception) {
                 activity?.runOnUiThread {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
@@ -132,5 +122,20 @@ class KeyFiguresFragment : Fragment() {
                 }
             }
         }).start()
+
+        val handler = Handler()
+        val runnable = object : Runnable {
+            override fun run() {
+                if (mStockList != null) {
+                    mTableAdapter?.setStockList(mStockList)
+                    hideProgressBar()
+                    setHasOptionsMenu(true)
+                } else {
+                    handler.postDelayed(this, 500)
+                    mTextViewProgress?.text = "${String.format("%.0f", IexApiController.mProgress * 100)}%"
+                }
+            }
+        }
+        handler.post(runnable)
     }
 }

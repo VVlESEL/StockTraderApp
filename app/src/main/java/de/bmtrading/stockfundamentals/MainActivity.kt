@@ -6,10 +6,10 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import de.bmtrading.stockfundamentals.filter.FilterFragment
+import de.bmtrading.stockfundamentals.filter.Filters
 import de.bmtrading.stockfundamentals.filter.MyDatabaseHelper
 import de.bmtrading.stockfundamentals.keyfigures.KeyFiguresFragment
 import de.bmtrading.stockfundamentals.sectors.SectorsFragment
-import iex.IexApiController
 
 class MainActivity : AppCompatActivity() {
     private var mBackPressedTimestamp: Long = 0

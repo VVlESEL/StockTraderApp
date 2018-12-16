@@ -3,11 +3,8 @@ package de.bmtrading.stockfundamentals.filter
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
-import android.content.pm.PackageManager
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteDatabase.openOrCreateDatabase
 import android.util.Log
-import android.view.Display
 
 object MyDatabaseHelper{
     private val DB_Name = "DB_FILTER"
@@ -20,7 +17,7 @@ object MyDatabaseHelper{
     fun initialize(activity: Activity) {
         try{
             myDatabse = activity.openOrCreateDatabase(DB_Name, Context.MODE_PRIVATE,null)
-            myDatabse?.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_NAME ($COLUMN_NAME VARCHAR, $COLUMN_MIN DOUBLE, $COLUMN_MAX DOUBLE)")
+            myDatabse?.execSQL("CREATE TABLE IF NOT EXISTS $TABLE_NAME ($COLUMN_NAME VARCHAR PRIMARY KEY, $COLUMN_MIN DOUBLE, $COLUMN_MAX DOUBLE)")
         }catch (e: Exception) {
             e.printStackTrace()
         }
@@ -35,12 +32,10 @@ object MyDatabaseHelper{
 
         cursor.moveToFirst()
         if(cursor.count > 0){
-            Log.d("StockFundamentals",cursor.toString())
             pFilter.min = cursor.getDouble(minIndex)
             pFilter.max = cursor.getDouble(maxIndex)
         }
         cursor.close()
-
     }
 
     fun updateFilter(pName: String, pMin: Double?, pMax: Double?) {
@@ -51,7 +46,7 @@ object MyDatabaseHelper{
 
         val id = myDatabse?.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE)
         if (id == -1L) {
-            myDatabse?.update(TABLE_NAME, values, "$COLUMN_NAME=?", Array(1){pName})
+            myDatabse?.update(TABLE_NAME, values, "$COLUMN_NAME like ?", Array(1){pName})
         }
     }
 }

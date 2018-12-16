@@ -1,5 +1,7 @@
 package de.bmtrading.stockfundamentals.filter
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
