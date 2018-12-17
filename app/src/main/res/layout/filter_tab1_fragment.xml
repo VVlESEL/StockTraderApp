@@ -1,6 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewMarketCap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/market_cap"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinMarketCap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="number"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewMarketCap"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxMarketCap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="number"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinMarketCap"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewBeta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/beta"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinBeta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewBeta"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxBeta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinBeta"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewDividendYield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dividend_yield"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinDividendYield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min_percent"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewDividendYield"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxDividendYield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max_percent"
+                android:inputType="numberDecimal"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinDividendYield"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewReturnOnEquity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/return_on_equity"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinReturnOnEquity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewReturnOnEquity"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxReturnOnEquity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinReturnOnEquity"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewReturnOnAssets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/return_on_assets"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinReturnOnAssets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewReturnOnAssets"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxReturnOnAssets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinReturnOnAssets"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPeRatio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/pe_ratio"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinPeRatio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewPeRatio"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxPeRatio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinPeRatio"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewProfitMargin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/profit_margin"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                android:layout_marginStart="@dimen/default_margin_left"
+                android:layout_marginLeft="@dimen/default_margin_left"
+                android:layout_marginTop="@dimen/default_margin_top"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintWidth_percent="0.5" />
+
+            <EditText
+                android:id="@+id/editTextMinProfitMargin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/min_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/textViewProfitMargin"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <EditText
+                android:id="@+id/editTextMaxProfitMargin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/max_percent"
+                android:inputType="numberDecimal|numberSigned"
+                android:textColor="@color/selected_text_color"
+                android:textSize="@dimen/default_text_size"
+                app:layout_constraintLeft_toRightOf="@id/editTextMinProfitMargin"
+                app:layout_constraintWidth_percent="0.25" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

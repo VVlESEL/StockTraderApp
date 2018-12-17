@@ -11,7 +11,8 @@
         android:maxLines="1"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/unselected_text_color"
+        android:layout_marginTop="@dimen/default_margin_top"
+        android:textColor="@color/selected_text_color"
         android:textSize="@dimen/default_text_size" />
 
     <TextView

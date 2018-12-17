@@ -11,38 +11,23 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabSelectedTextColor="@color/selected_text_color"
+        app:tabTextColor="@color/unselected_text_color"
         android:layout_alignParentTop="true" />
 
-    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.view.ViewPager
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/buttons"
+        android:layout_above="@id/buttonReset"
         android:layout_below="@id/tabs" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/buttons"
+    <Button
+        android:id="@+id/buttonReset"
+        style="?android:borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <Button
-            android:id="@+id/buttonSave"
-            style="?android:borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintWidth_percent="0.5" />
-
-        <Button
-            android:id="@+id/buttonReset"
-            style="?android:borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:text="@string/reset"
-            app:layout_constraintLeft_toRightOf="@id/buttonSave"
-            app:layout_constraintWidth_percent="0.5" />
-    </android.support.constraint.ConstraintLayout>
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/selected_text_color"
+        android:text="@string/reset"/>
 </RelativeLayout>

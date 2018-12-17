@@ -1,9 +1,13 @@
 package de.bmtrading.stockfundamentals.keyfigures
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.*
@@ -43,10 +47,10 @@ class KeyFiguresFragment : Fragment() {
         initializeTableView(mTableView!!)
 
         if (mStockList != null) {
-            mTableAdapter?.setStockList(mStockList)
+            mTableAdapter?.setStockList(mStockList?.filter { checkStock(it) })
             hideProgressBar()
             setHasOptionsMenu(true)
-        }else{
+        } else {
             refreshStockList()
         }
 
@@ -54,8 +58,10 @@ class KeyFiguresFragment : Fragment() {
     }
 
     override fun onAttach(context: Context?) {
-        val drawer: DrawerLayout = activity!!.findViewById(R.id.drawer_layout)
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        if(activity!!.findViewById<DrawerLayout>(R.id.drawer_layout) != null){
+            val drawer: DrawerLayout = activity!!.findViewById(R.id.drawer_layout)
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
         super.onAttach(context)
     }
 
@@ -66,7 +72,12 @@ class KeyFiguresFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.clear()
         inflater?.inflate(R.menu.keyfigures_menu, menu)
+
+        val drawable: Drawable = menu!!.findItem(R.id.refresh).icon
+        drawable.mutate()
+        drawable.setColorFilter(ContextCompat.getColor(context!!,R.color.selected_text_color), PorterDuff.Mode.SRC_ATOP)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -111,9 +122,7 @@ class KeyFiguresFragment : Fragment() {
             try {
                 val symbols = IexApiController.getSP500Symbols()
                 val types = listOf(Types.company.name, Types.stats.name, Types.quote.name)
-                mStockList = IexApiController.getStocksList(symbols, types).filter {
-                    checkStock(it)
-                }
+                mStockList = IexApiController.getStocksList(symbols, types)
             } catch (e: Exception) {
                 activity?.runOnUiThread {
                     Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
@@ -125,14 +134,21 @@ class KeyFiguresFragment : Fragment() {
 
         val handler = Handler()
         val runnable = object : Runnable {
+            var dots: Int = 0
+
             override fun run() {
                 if (mStockList != null) {
-                    mTableAdapter?.setStockList(mStockList)
+                    mTableAdapter?.setStockList(mStockList?.filter { checkStock(it) })
                     hideProgressBar()
                     setHasOptionsMenu(true)
                 } else {
                     handler.postDelayed(this, 500)
-                    mTextViewProgress?.text = "${String.format("%.0f", IexApiController.mProgress * 100)}%"
+                    val sb = StringBuilder().append("Loading")
+                    for (i in 1..dots) {
+                        sb.append(".")
+                    }
+                    dots = if(dots++ < 3) dots else 0
+                    mTextViewProgress?.text = sb.toString()
                 }
             }
         }

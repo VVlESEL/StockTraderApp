@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StockFundamentals</string>
+    <string name="app_name">SP500 Stocks</string>
 
     <!-- general -->
     <string name="sure_exit">Press again to exit</string>
@@ -11,9 +11,14 @@
 
     <string name="min">Min</string>
     <string name="max">Max</string>
+    <string name="min_percent">Min %</string>
+    <string name="max_percent">Max %</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <!-- menu -->
-    <string name="header_title">Menu</string>
+    <string name="header_title">Navigator</string>
     <string name="sectors">Sectors</string>
     <string name="filter">Filter</string>
     <string name="key_figures">Key Figures</string>
@@ -23,6 +28,14 @@
     <string name="sort_descending">Sort Descending</string>
     <string name="clear_sorting">Clear</string>
 
+
+    <string name="market_cap">Market Cap</string>
+    <string name="beta">Beta</string>
+    <string name="dividend_yield">Dividend Yield</string>
+    <string name="return_on_equity">Return on Equity</string>
+    <string name="return_on_assets">Return on Assets</string>
+    <string name="pe_ratio">PE Ratio</string>
+    <string name="profit_margin">Profit Margin</string>
 
     <string name="change_5_y">5Y Change</string>
     <string name="change_2_y">2Y Change</string>

@@ -14,8 +14,6 @@ import java.net.URL
 
 
 object IexApiController {
-    var mProgress = 0.0
-
     /**
      * Returns a json string resulting form a call to the chosen url
      */
@@ -48,76 +46,61 @@ object IexApiController {
      * Returns a list of the requested stocks containing information about the requested types
      */
     fun getStocksList(symbolsList: List<String>, typesList: List<String>): List<Stock> {
-        mProgress = 0.0
-
         val stocksList = ArrayList<Stock>()
         val gson = Gson()
 
-        var counter = 0
-        var startIndex = 0
-        for(i in 1..symbolsList.size) {
-            if(i % 50 == 0 || i == symbolsList.size) {
-                val data = getKeyFiguresList(symbolsList.subList(startIndex,i),typesList)
+        val data = getKeyFiguresList(symbolsList,typesList)
 
-                Log.d("StockFundamentals","getStockList: Progress is $i/${symbolsList.size}...")
-                startIndex = i+1
+        val jsonObj = JSONObject(data)
 
-                val jsonObj = JSONObject(data)
+        jsonObj.keys().forEach { s ->
+            val stockObj = JSONObject()
+            val obj = jsonObj.getJSONObject(s)
 
-                jsonObj.keys().forEach { s ->
-                    counter++
-                    mProgress = counter/symbolsList.size.toDouble()
-
-                    val stockObj = JSONObject()
-                    val obj = jsonObj.getJSONObject(s)
-
-                    val companyName = Types.company.name
-                    if (obj[companyName] != null) {
-                        val temp = obj.getJSONObject(companyName)
-                        temp.keys().forEach {
-                            stockObj.put(it,temp[it])
-                        }
-                    }
-                    val statsName = Types.stats.name
-                    if (obj[statsName] != null) {
-                        val temp = obj.getJSONObject(statsName)
-                        temp.keys().forEach {
-                            stockObj.put(it,temp[it])
-                        }
-                    }
-                    val quoteName = Types.quote.name
-                    if (obj[quoteName] != null) {
-                        val temp = obj.getJSONObject(quoteName)
-                        temp.keys().forEach {
-                            stockObj.put(it,temp[it])
-                        }
-                    }
-
-                    val stock = gson.fromJson<Stock>(stockObj.toString(),Stock::class.java)
-                    if (stock != null) stocksList.add(stock)
-
-                    val financialsName = Types.financials.name
-                    if(typesList.contains(financialsName) && obj[financialsName] != null) {
-                        val temp = obj.getJSONObject(financialsName)
-                        val tempArr = temp.getJSONArray(financialsName)
-                        stock?.financials = tempArr
-                    }
-                    val earningsName = Types.earnings.name
-                    if(typesList.contains(earningsName) && obj[earningsName] != null) {
-                        val temp = obj.getJSONObject(earningsName)
-                        val tempArr = temp.getJSONArray(earningsName)
-                        stock?.earnings = tempArr
-                    }
-                    val newsName = Types.news.name
-                    if(typesList.contains(newsName) && obj[newsName] != null) {
-                        val temp = obj.getJSONObject(newsName)
-                        val tempArr = temp.getJSONArray(newsName)
-                        stock?.news = tempArr
-                    }
+            val companyName = Types.company.name
+            if (obj[companyName] != null) {
+                val temp = obj.getJSONObject(companyName)
+                temp.keys().forEach {
+                    stockObj.put(it,temp[it])
                 }
             }
+            val statsName = Types.stats.name
+            if (obj[statsName] != null) {
+                val temp = obj.getJSONObject(statsName)
+                temp.keys().forEach {
+                    stockObj.put(it,temp[it])
+                }
+            }
+            val quoteName = Types.quote.name
+            if (obj[quoteName] != null) {
+                val temp = obj.getJSONObject(quoteName)
+                temp.keys().forEach {
+                    stockObj.put(it,temp[it])
+                }
+            }
+
+            val stock = gson.fromJson<Stock>(stockObj.toString(),Stock::class.java)
+            if (stock != null) stocksList.add(stock)
+
+            val financialsName = Types.financials.name
+            if(typesList.contains(financialsName) && obj[financialsName] != null) {
+                val temp = obj.getJSONObject(financialsName)
+                val tempArr = temp.getJSONArray(financialsName)
+                stock?.financials = tempArr
+            }
+            val earningsName = Types.earnings.name
+            if(typesList.contains(earningsName) && obj[earningsName] != null) {
+                val temp = obj.getJSONObject(earningsName)
+                val tempArr = temp.getJSONArray(earningsName)
+                stock?.earnings = tempArr
+            }
+            val newsName = Types.news.name
+            if(typesList.contains(newsName) && obj[newsName] != null) {
+                val temp = obj.getJSONObject(newsName)
+                val tempArr = temp.getJSONArray(newsName)
+                stock?.news = tempArr
+            }
         }
-        mProgress = 0.0
 
         return stocksList
     }

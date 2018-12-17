@@ -3,6 +3,9 @@ package de.bmtrading.stockfundamentals.filter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.provider.SyncStateContract.Helpers.update
+
+
 
 class SectionsPageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
     private val mFragmentList: MutableList<Fragment> = mutableListOf()
@@ -24,4 +27,5 @@ class SectionsPageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm){
     override fun getCount(): Int {
         return mFragmentList.size
     }
+
 }

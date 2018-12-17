@@ -22,6 +22,10 @@ object Filters {
     val change30D = Filter("Change30D")
     val change5D = Filter("Change5D")
 
+    val filterList = listOf(marketCap, beta, dividendYield, returnOnEquity, returnOnAssets,
+            peRatio, profitMargin, change5Y, change2Y, change1Y, changeYtd, change6M,
+            change3M, change1M, change30D, change5D)
+
     fun checkStock(stock: Stock): Boolean {
 
         return stock.marketcap > marketCap.min &&
@@ -38,39 +42,47 @@ object Filters {
                 stock.peRatio < peRatio.max &&
                 stock.profitMargin > profitMargin.min &&
                 stock.profitMargin < profitMargin.max &&
-                stock.year5ChangePercent*100 > change5Y.min &&
-                stock.year5ChangePercent*100 < change5Y.max &&
-                stock.year2ChangePercent*100 > change2Y.min &&
-                stock.year2ChangePercent*100 < change2Y.max &&
-                stock.year1ChangePercent*100 > change1Y.min &&
-                stock.year1ChangePercent*100 < change1Y.max &&
-                stock.ytdChange*100 > changeYtd.min &&
-                stock.ytdChange*100 < changeYtd.max &&
-                stock.month6ChangePercent*100 > change6M.min &&
-                stock.month6ChangePercent*100 < change6M.max &&
-                stock.month3ChangePercent*100 > change3M.min &&
-                stock.month3ChangePercent*100 < change3M.max &&
-                stock.month1ChangePercent*100 > change1M.min &&
-                stock.month1ChangePercent*100 < change1M.max &&
-                stock.day30ChangePercent*100 > change30D.min &&
-                stock.day30ChangePercent*100 < change30D.max &&
-                stock.day5ChangePercent*100 > change5D.min &&
-                stock.day5ChangePercent*100 < change5D.max
+                stock.year5ChangePercent * 100 > change5Y.min &&
+                stock.year5ChangePercent * 100 < change5Y.max &&
+                stock.year2ChangePercent * 100 > change2Y.min &&
+                stock.year2ChangePercent * 100 < change2Y.max &&
+                stock.year1ChangePercent * 100 > change1Y.min &&
+                stock.year1ChangePercent * 100 < change1Y.max &&
+                stock.ytdChange * 100 > changeYtd.min &&
+                stock.ytdChange * 100 < changeYtd.max &&
+                stock.month6ChangePercent * 100 > change6M.min &&
+                stock.month6ChangePercent * 100 < change6M.max &&
+                stock.month3ChangePercent * 100 > change3M.min &&
+                stock.month3ChangePercent * 100 < change3M.max &&
+                stock.month1ChangePercent * 100 > change1M.min &&
+                stock.month1ChangePercent * 100 < change1M.max &&
+                stock.day30ChangePercent * 100 > change30D.min &&
+                stock.day30ChangePercent * 100 < change30D.max &&
+                stock.day5ChangePercent * 100 > change5D.min &&
+                stock.day5ChangePercent * 100 < change5D.max
+    }
+
+    fun resetFilters(){
+        for(filter in filterList){
+            Log.d("StockFundamentals",filter.toString())
+            filter.min = -Double.MAX_VALUE
+            filter.max = Double.MAX_VALUE
+        }
     }
 }
 
-data class Filter(val name: String){
+data class Filter(val name: String) {
     var min: Double = -Double.MAX_VALUE
-    set(value) {
-        field = value
-        MyDatabaseHelper.updateFilter(name,value,null)
-    }
+        set(value) {
+            field = value
+            MyDatabaseHelper.updateFilter(name, value, null)
+        }
 
     var max: Double = Double.MAX_VALUE
-    set(value) {
-        field = value
-        MyDatabaseHelper.updateFilter(name,null,value)
-    }
+        set(value) {
+            field = value
+            MyDatabaseHelper.updateFilter(name, null, value)
+        }
 
     init {
         MyDatabaseHelper.getFilter(this)

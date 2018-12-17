@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 
 object MyDatabaseHelper{
     private val DB_Name = "DB_FILTER"

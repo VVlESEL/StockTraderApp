@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_sectors"
-        android:icon="@drawable/ic_view_comfy_black_24dp"
+        android:icon="@drawable/ic_business_black_24dp"
         android:title="@string/sectors" />
     <item
         android:id="@+id/nav_filter"
-        android:icon="@drawable/ic_view_comfy_black_24dp"
+        android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="@string/filter" />
     <item
         android:id="@+id/nav_key_figures"
