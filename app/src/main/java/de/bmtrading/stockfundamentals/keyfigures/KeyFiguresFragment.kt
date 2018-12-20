@@ -143,12 +143,7 @@ class KeyFiguresFragment : Fragment() {
                     setHasOptionsMenu(true)
                 } else {
                     handler.postDelayed(this, 500)
-                    val sb = StringBuilder().append("Loading")
-                    for (i in 1..dots) {
-                        sb.append(".")
-                    }
-                    dots = if(dots++ < 3) dots else 0
-                    mTextViewProgress?.text = sb.toString()
+                    mTextViewProgress?.text = "${String.format("%.0f", IexApiController.mProgress * 100)}%"
                 }
             }
         }
